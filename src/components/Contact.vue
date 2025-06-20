@@ -19,10 +19,10 @@
               </div>
               <div class="contact__details">
                 <h4>Contact Number</h4>
-                <a href="tel:+1234567890">(+63) 912 345 6789</a>
+                <a href="tel:+1234567890">(+63) 916 591 6722</a>
               </div>
             </div>
-
+            
             <div class="contact__method">
               <div class="contact__icon">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -159,7 +159,7 @@ const handleSubmit = async () => {
 }
 
 .contact__info {
-  margin-top: -50px;
+  margin-top: -56px;
 }
 
 .contact__subtitle {

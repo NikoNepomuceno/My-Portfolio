@@ -1,7 +1,43 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { gsap } from 'gsap';
 
 const isOpen = ref(false);
+let tl;
+
+watch(isOpen, (newValue) => {
+  if (newValue) {
+    // Animate in
+    gsap.set('.navbar__links', { display: 'flex' });
+    tl = gsap.timeline()
+      .to('.navbar__links', {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.inOut',
+        onStart: () => {
+          gsap.set('.navbar__links', { pointerEvents: 'auto' });
+        }
+      })
+      .fromTo('.nav-link', {
+        y: 20,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.1,
+        ease: 'power2.out',
+      });
+  } else {
+    // Animate out
+    if (tl) {
+      tl.reverse().then(() => {
+        gsap.set('.navbar__links', { pointerEvents: 'none' });
+      });
+    }
+  }
+});
+
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
@@ -15,7 +51,9 @@ const scrollToSection = (sectionId) => {
     });
   }
   // Close mobile menu if open
-  isOpen.value = false;
+  if (isOpen.value) {
+    isOpen.value = false;
+  }
 };
 </script>
 
@@ -27,7 +65,7 @@ const scrollToSection = (sectionId) => {
       <span :class="{'open': isOpen}"></span>
       <span :class="{'open': isOpen}"></span>
     </button>
-    <ul :class="['navbar__links', { 'navbar__links--open': isOpen }]">
+    <ul class="navbar__links">
       <li><a @click="scrollToSection('home')" class="nav-link">Home</a></li>
       <li><a @click="scrollToSection('about')" class="nav-link">About</a></li>
       <li><a @click="scrollToSection('projects')" class="nav-link">Projects</a></li>
@@ -121,33 +159,42 @@ const scrollToSection = (sectionId) => {
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem 0.5rem;
+    padding: 1rem;
   }
   .navbar__logo {
-    font-size: 1.1rem;
-    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    z-index: 101;
+    color: #fff;
   }
   .navbar__links {
-    position: absolute;
-    top: -300px;
+    position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
-    flex-direction: column;
-    background: rgba(10, 14, 23, 0.85);
     width: 100vw;
-    padding: 1rem 0;
-    gap: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: top 0.3s ease;
+    height: 100vh;
+    background: #0A0E17;
+    display: none; /* Initially hidden, managed by GSAP */
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    gap: 2rem;
+    
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
   }
-  .navbar__links--open {
-    top: 50px;
+
+  .navbar__links .nav-link {
+    font-size: 1.5rem;
   }
+  
   .navbar__toggle {
     display: flex;
+    z-index: 101;
+  }
+
+  .navbar__toggle span.open {
+    background: #fff;
   }
 }
 </style>

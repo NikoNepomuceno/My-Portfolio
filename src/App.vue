@@ -6,6 +6,7 @@ import About from './components/About.vue';
 import Projects from './components/Projects.vue';
 import Gallery from './components/Gallery.vue';
 import Contact from './components/Contact.vue';
+import BackToTop from './components/BackToTop.vue';
 import { createScrollAnimations, cleanupAnimations } from './utils/animations';
 
 const canvasRef = ref(null);
@@ -110,6 +111,7 @@ onUnmounted(() => {
     <Projects />
     <Gallery />
     <Contact />
+    <BackToTop />
   </main>
 </template>
 
