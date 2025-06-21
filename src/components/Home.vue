@@ -82,69 +82,84 @@ onMounted(() => {
   justify-content: center;
   text-align: center;
   color: #fff;
-  padding: 3rem 1rem 1rem 1rem;
+  padding: var(--spacing-2xl) var(--spacing-md) var(--spacing-md) var(--spacing-md);
 }
 
 .hero__title {
-  font-size: 3rem;
+  font-size: var(--font-size-4xl);
   font-weight: 800;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-xs);
   letter-spacing: 2px;
   text-shadow: 0 4px 32px rgba(0,0,0,0.4);
+  line-height: 1.1;
 }
+
 .hero__subtitle {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   font-weight: 400;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
   color: #e0e0e0;
 }
+
 .hero__desc {
-  font-size: 1.3rem;
+  font-size: var(--font-size-lg);
   color: #b0b8c9;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--spacing-xl);
   line-height: 1.5;
+  max-width: 600px;
 }
+
 .hero__actions {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .hero__btn {
-  font-size: 1.1rem;
-  padding: 0.9rem 2.2rem;
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: 0.5rem;
   border: 1px solid #222b3a;
   cursor: pointer;
   font-weight: 600;
   transition: background 0.2s, color 0.2s, border 0.2s;
+  min-height: 44px;
+  min-width: 120px;
 }
+
 .hero__btn--primary {
   background: #111216;
   color: #fff;
   border: 1.5px solid #222b3a;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
 }
+
 .hero__btn--primary:hover {
   background: #181f2a;
   color: #00bcd4;
 }
+
 .hero__btn--secondary {
   background: transparent;
   color: #fff;
   border: 1.5px solid #222b3a;
 }
+
 .hero__btn--secondary:hover {
   background: #181f2a;
   color: #00bcd4;
 }
+
 .hero__socials {
   display: flex;
-  gap: 2rem;
-  margin-bottom: 2.5rem;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
   justify-content: center;
+  flex-wrap: wrap;
 }
+
 .hero__icon {
   display: flex;
   align-items: center;
@@ -157,19 +172,126 @@ onMounted(() => {
   color: #b0b8c9;
   font-size: 1.7rem;
   transition: background 0.2s, color 0.2s;
+  min-width: 56px;
+  min-height: 56px;
 }
+
 .hero__icon:hover {
   background: #181f2a;
   color: #00bcd4;
 }
+
 .hero__down-arrow {
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-md);
   color: #b0b8c9;
-  /* a bounce keyframe animation is no longer needed since GSAP handles it*/
 }
-@media (max-width: 900px) {
-  .hero__title { font-size: 2.5rem; }
-  .hero__subtitle { font-size: 1.2rem; }
-  .hero__desc { font-size: 1rem; }
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--spacing-xl) var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
+    min-height: 90vh;
+  }
+  
+  .hero__title {
+    font-size: var(--font-size-3xl);
+    letter-spacing: 1px;
+  }
+  
+  .hero__subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .hero__desc {
+    font-size: var(--font-size-base);
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .hero__btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .hero__socials {
+    gap: var(--spacing-md);
+  }
+  
+  .hero__icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .hero__subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .hero__desc {
+    font-size: var(--font-size-base);
+  }
+  
+  .hero__actions {
+    gap: var(--spacing-sm);
+  }
+  
+  .hero__btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero__title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .hero__subtitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .hero__desc {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: 100vh;
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .hero__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .hero__subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .hero__desc {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .hero__actions {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .hero__socials {
+    margin-bottom: var(--spacing-md);
+  }
 }
 </style> 

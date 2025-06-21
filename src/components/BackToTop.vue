@@ -66,6 +66,8 @@ onUnmounted(() => {
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 188, 212, 0.3);
+  min-width: 50px;
+  min-height: 50px;
 }
 
 .back-to-top:hover {
@@ -89,12 +91,45 @@ onUnmounted(() => {
   transform: scale(0.8);
 }
 
-@media (max-width: 768px) {
+/* Mobile Optimizations */
+@media (max-width: 480px) {
   .back-to-top {
     bottom: 20px;
     right: 20px;
     width: 45px;
     height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .back-to-top {
+    bottom: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .back-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .back-to-top {
+    box-shadow: 0 2px 10px rgba(0, 188, 212, 0.3);
   }
 }
 </style> 

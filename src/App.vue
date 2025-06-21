@@ -8,6 +8,7 @@ import Gallery from './components/Gallery.vue';
 import Contact from './components/Contact.vue';
 import BackToTop from './components/BackToTop.vue';
 import { createScrollAnimations, cleanupAnimations } from './utils/animations';
+import { RouterLink } from 'vue-router';
 
 const canvasRef = ref(null);
 const gridSize = 48;
@@ -112,6 +113,8 @@ onUnmounted(() => {
     <Gallery />
     <Contact />
     <BackToTop />
+
+    <!-- <RouterView /> -->
   </main>
 </template>
 

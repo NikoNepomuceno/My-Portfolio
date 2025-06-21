@@ -178,7 +178,7 @@ const closeModal = () => {
 <style scoped>
 .gallery {
   min-height: 80vh;
-  padding: 3rem 1rem;
+  padding: var(--spacing-2xl) var(--spacing-md);
   color: #fff;
 }
 
@@ -188,38 +188,39 @@ const closeModal = () => {
 }
 
 .gallery__title {
-  font-size: 3rem;
+  font-size: var(--font-size-4xl);
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 0 4px 32px rgba(0,0,0,0.4);
 }
 
 .gallery__subtitle {
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   color: #b0b8c9;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .gallery__filters {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 0.6rem 1.5rem;
+  padding: var(--spacing-xs) var(--spacing-md);
   background: transparent;
   color: #b0b8c9;
   border: 1px solid #222b3a;
   border-radius: 2rem;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   transition: all 0.2s;
+  min-height: 44px;
 }
 
 .filter-btn:hover,
@@ -231,8 +232,8 @@ const closeModal = () => {
 
 .gallery__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
 }
 
 .gallery__item {
@@ -248,7 +249,7 @@ const closeModal = () => {
 
 .gallery__image {
   position: relative;
-  height: 250px;
+  height: 220px;
   background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
   display: flex;
   align-items: center;
@@ -280,28 +281,28 @@ const closeModal = () => {
 
 .gallery__overlay-content {
   text-align: center;
-  padding: 1rem;
+  padding: var(--spacing-sm);
 }
 
 .gallery__overlay-content h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xs);
   color: #e0e0e0;
 }
 
 .gallery__overlay-content p {
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: #b0b8c9;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
   line-height: 1.4;
 }
 
 .gallery__category {
   background: rgba(0, 188, 212, 0.2);
   color: #00bcd4;
-  padding: 0.3rem 0.8rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 1rem;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   border: 1px solid rgba(0, 188, 212, 0.3);
 }
 
@@ -317,7 +318,7 @@ const closeModal = () => {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 2rem;
+  padding: var(--spacing-lg);
 }
 
 .modal__content {
@@ -333,16 +334,21 @@ const closeModal = () => {
 
 .modal__close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
   background: none;
   border: none;
   color: #b0b8c9;
   cursor: pointer;
   z-index: 10;
-  padding: 0.5rem;
+  padding: var(--spacing-xs);
   border-radius: 0.3rem;
   transition: all 0.2s;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal__close:hover {
@@ -364,25 +370,25 @@ const closeModal = () => {
 }
 
 .modal__info {
-  padding: 2rem;
+  padding: var(--spacing-lg);
 }
 
 .modal__info h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-sm);
   color: #e0e0e0;
 }
 
 .modal__info p {
   color: #b0b8c9;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .modal__details {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
   flex-wrap: wrap;
 }
 
@@ -390,38 +396,63 @@ const closeModal = () => {
 .modal__date {
   background: rgba(0, 188, 212, 0.1);
   color: #00bcd4;
-  padding: 0.4rem 1rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 1rem;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   border: 1px solid rgba(0, 188, 212, 0.3);
 }
 
 .modal__tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
 }
 
 .tech-tag {
   background: rgba(0, 188, 212, 0.1);
   color: #00bcd4;
-  padding: 0.3rem 0.8rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 1rem;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   border: 1px solid rgba(0, 188, 212, 0.3);
 }
 
-@media (max-width: 768px) {
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .gallery {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+  
   .gallery__title {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
+  }
+  
+  .gallery__subtitle {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .gallery__filters {
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .filter-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
   }
   
   .gallery__grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .gallery__image {
+    height: 180px;
   }
   
   .modal {
-    padding: 1rem;
+    padding: var(--spacing-sm);
   }
   
   .modal__content {
@@ -429,7 +460,67 @@ const closeModal = () => {
   }
   
   .modal__info {
-    padding: 1.5rem;
+    padding: var(--spacing-md);
+  }
+  
+  .modal__info h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .modal__image {
+    height: 200px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .gallery__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .gallery__grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .modal {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery__title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .gallery__grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .gallery {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .gallery__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .gallery__subtitle {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .gallery__filters {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .gallery__grid {
+    gap: var(--spacing-sm);
+  }
+  
+  .gallery__image {
+    height: 150px;
   }
 }
 </style> 

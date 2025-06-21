@@ -24,7 +24,7 @@
                   <li>JavaScript/TypeScript</li>
                   <li>Python</li>
                   <li>Java</li>
-                  <li>C#</li>
+                  <li>C</li>
                 </ul>
               </div>
               <div class="skill-category">
@@ -69,7 +69,7 @@
 <style scoped>
 .about {
   min-height: 80vh;
-  padding: 3rem 1rem;
+  padding: var(--spacing-2xl) var(--spacing-md);
   color: #fff;
 }
 
@@ -79,9 +79,9 @@
 }
 
 .about__title {
-  font-size: 3rem;
+  font-size: var(--font-size-4xl);
   font-weight: 800;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
@@ -89,7 +89,7 @@
 
 .about__content {
   display: flex;
-  gap: 3rem;
+  gap: var(--spacing-xl);
   align-items: flex-start;
 }
 
@@ -98,41 +98,41 @@
 }
 
 .about__paragraph {
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   color: #b0b8c9;
   line-height: 1.7;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .about__skills {
-  margin-top: 3rem;
+  margin-top: var(--spacing-xl);
 }
 
 .about__skills-title {
-  padding-top: 40px;
-  font-size: 1.8rem;
+  padding-top: var(--spacing-lg);
+  font-size: var(--font-size-2xl);
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-md);
   color: #e0e0e0;
 }
 
 .about__skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
 }
 
 .skill-category {
   background: rgba(10, 14, 23, 0.5);
   border: 1px solid #222b3a;
   border-radius: 0.5rem;
-  padding: 1.5rem;
+  padding: var(--spacing-md);
 }
 
 .skill-category h4 {
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
   color: #00bcd4;
 }
 
@@ -143,27 +143,111 @@
 
 .skill-category li {
   color: #b0b8c9;
-  padding: 0.3rem 0;
-  font-size: 1rem;
+  padding: var(--spacing-xs) 0;
+  font-size: var(--font-size-base);
 }
 
 .skill-category li:before {
   content: "▹";
   color: #00bcd4;
-  margin-right: 0.5rem;
+  margin-right: var(--spacing-xs);
 }
 
-@media (max-width: 768px) {
-  .about__title {
-    font-size: 2.5rem;
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .about {
+    padding: var(--spacing-xl) var(--spacing-sm);
   }
+  
+  .about__title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .about__content {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+  
+  .about__paragraph {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .about__skills {
+    margin-top: var(--spacing-lg);
+  }
+  
+  .about__skills-title {
+    font-size: var(--font-size-xl);
+    padding-top: var(--spacing-md);
+  }
+  
+  .about__skills-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .skill-category {
+    padding: var(--spacing-sm);
+  }
+  
+  .skill-category h4 {
+    font-size: var(--font-size-base);
+  }
+  
+  .skill-category li {
+    font-size: var(--font-size-sm);
+  }
+}
 
+@media (min-width: 481px) and (max-width: 768px) {
+  .about__title {
+    font-size: var(--font-size-3xl);
+  }
+  
   .about__content {
     flex-direction: column;
   }
-
+  
   .about__skills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .about__title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .about__content {
+    gap: var(--spacing-lg);
+  }
+  
+  .about__skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .about {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .about__title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .about__paragraph {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .about__skills-title {
+    font-size: var(--font-size-lg);
+    padding-top: var(--spacing-sm);
   }
 }
 </style>

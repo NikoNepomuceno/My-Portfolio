@@ -48,17 +48,17 @@ import { ref } from 'vue'
 const projects = ref([
   {
     id: 1,
-    title: "E-Commerce API",
-    description: "A robust RESTful API built with Node.js and Express, featuring user authentication, product management, and payment processing with Stripe integration.",
-    technologies: ["Node.js", "Express", "MongoDB", "JWT", "Stripe"],
+    title: "CommEase",
+    description: "An Online web application to check student attendace and clarance for more seemless and paperless transaction.",
+    technologies: ["Vue.js", "PHP", "JWT", "MySQL", "AJAX"],
     github: "https://github.com/yourusername/ecommerce-api",
-    live: "https://api-demo.example.com"
+    // live: "https://api-demo.example.com"
   },
   {
     id: 2,
-    title: "Task Management System",
-    description: "A full-stack task management application with real-time updates, team collaboration features, and advanced filtering capabilities.",
-    technologies: ["Python", "Django", "PostgreSQL", "WebSockets", "Redis"],
+    title: "Pawnder",
+    description: "A centralized web application for reporting Lost & Found pets.",
+    technologies: ["Laravel", "MySQL", "Cloudinary", "LiveWire", "AJAX"],
     github: "https://github.com/yourusername/task-manager",
     live: null
   },
@@ -70,21 +70,21 @@ const projects = ref([
     github: "https://github.com/yourusername/microservices-platform",
     live: null
   },
-  {
-    id: 4,
-    title: "Real-time Chat Application",
-    description: "A real-time messaging application with WebSocket support, file sharing, and end-to-end encryption for secure communications.",
-    technologies: ["C#", ".NET Core", "SignalR", "SQL Server", "Azure"],
-    github: "https://github.com/yourusername/chat-app",
-    live: "https://chat-demo.example.com"
-  }
+        // {
+        //   id: 4,
+        //   title: "Real-time Chat Application",
+        //   description: "A real-time messaging application with WebSocket support, file sharing, and end-to-end encryption for secure communications.",
+        //   technologies: ["C#", ".NET Core", "SignalR", "SQL Server", "Azure"],
+        //   github: "https://github.com/yourusername/chat-app",
+        //   live: "https://chat-demo.example.com"
+        // }
 ])
 </script>
 
 <style scoped>
 .projects {
   min-height: 80vh;
-  padding: 3rem 1rem;
+  padding: var(--spacing-2xl) var(--spacing-md);
   color: #fff;
 }
 
@@ -94,9 +94,9 @@ const projects = ref([
 }
 
 .projects__title {
-  font-size: 3rem;
+  font-size: var(--font-size-4xl);
   font-weight: 800;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-xl);
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 0 4px 32px rgba(0,0,0,0.4);
@@ -104,8 +104,8 @@ const projects = ref([
 
 .projects__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
 }
 
 .project-card {
@@ -135,55 +135,57 @@ const projects = ref([
 }
 
 .project-card__content {
-  padding: 1.5rem;
+  padding: var(--spacing-md);
 }
 
 .project-card__title {
-  font-size: 1.4rem;
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
   color: #e0e0e0;
 }
 
 .project-card__description {
   color: #b0b8c9;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
 }
 
 .project-card__tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
 }
 
 .tech-tag {
   background: rgba(0, 188, 212, 0.1);
   color: #00bcd4;
-  padding: 0.3rem 0.8rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 1rem;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   border: 1px solid rgba(0, 188, 212, 0.3);
 }
 
 .project-card__links {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
 }
 
 .project-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
   color: #b0b8c9;
   text-decoration: none;
-  font-size: 0.9rem;
-  padding: 0.5rem 1rem;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border: 1px solid #222b3a;
   border-radius: 0.3rem;
   transition: all 0.2s;
+  min-height: 44px;
 }
 
 .project-link:hover {
@@ -192,17 +194,85 @@ const projects = ref([
   background: rgba(0, 188, 212, 0.1);
 }
 
-@media (max-width: 768px) {
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .projects {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+  
   .projects__title {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
   }
   
   .projects__grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .project-card__content {
+    padding: var(--spacing-sm);
+  }
+  
+  .project-card__title {
+    font-size: var(--font-size-base);
+  }
+  
+  .project-card__description {
+    font-size: var(--font-size-xs);
   }
   
   .project-card__links {
     flex-direction: column;
+  }
+  
+  .project-link {
+    justify-content: center;
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .projects__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .projects__grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .project-card__links {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects__title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .projects__grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .projects {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .projects__title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .projects__grid {
+    gap: var(--spacing-sm);
+  }
+  
+  .project-card__image {
+    height: 150px;
   }
 }
 </style> 

@@ -84,7 +84,7 @@ const scrollToSection = (sectionId) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: var(--spacing-md) var(--spacing-lg);
   background: rgba(10, 14, 23, 0.7);
   color: #fff;
   position: relative;
@@ -94,7 +94,7 @@ const scrollToSection = (sectionId) => {
 }
 
 .navbar__logo {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   font-weight: bold;
   letter-spacing: 2px;
   cursor: pointer;
@@ -107,7 +107,7 @@ const scrollToSection = (sectionId) => {
 
 .navbar__links {
   display: flex;
-  gap: 2rem;
+  gap: var(--spacing-lg);
   list-style: none;
   transition: right 0.3s ease, top 0.3s ease;
 }
@@ -115,13 +115,16 @@ const scrollToSection = (sectionId) => {
 .nav-link {
   color: #fff;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   transition: color 0.2s;
   cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 0.25rem;
 }
 
 .nav-link:hover {
   color: #00bcd4;
+  background: rgba(0, 188, 212, 0.1);
 }
 
 .navbar__toggle {
@@ -133,8 +136,15 @@ const scrollToSection = (sectionId) => {
   border: none;
   cursor: pointer;
   z-index: 20;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  padding: var(--spacing-xs);
+  border-radius: 0.25rem;
+  transition: background 0.2s;
+}
+
+.navbar__toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .navbar__toggle span {
@@ -157,15 +167,18 @@ const scrollToSection = (sectionId) => {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* Mobile Styles */
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
+  
   .navbar__logo {
-    font-size: 1.5rem;
+    font-size: var(--font-size-lg);
     z-index: 101;
     color: #fff;
   }
+  
   .navbar__links {
     position: fixed;
     top: 0;
@@ -177,7 +190,7 @@ const scrollToSection = (sectionId) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: var(--spacing-lg);
     
     opacity: 0;
     pointer-events: none;
@@ -185,7 +198,11 @@ const scrollToSection = (sectionId) => {
   }
 
   .navbar__links .nav-link {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
+    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
   
   .navbar__toggle {
@@ -195,6 +212,64 @@ const scrollToSection = (sectionId) => {
 
   .navbar__toggle span.open {
     background: #fff;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+  
+  .navbar__logo {
+    font-size: var(--font-size-lg);
+  }
+  
+  .navbar__links {
+    gap: var(--spacing-md);
+  }
+  
+  .nav-link {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .navbar {
+    padding: var(--spacing-sm);
+  }
+  
+  .navbar__logo {
+    font-size: var(--font-size-base);
+  }
+  
+  .navbar__links .nav-link {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-md);
+  }
+  
+  .navbar__toggle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .navbar__toggle span {
+    width: 22px;
+    height: 2px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .navbar__links {
+    gap: var(--spacing-md);
+  }
+  
+  .navbar__links .nav-link {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-sm);
   }
 }
 </style>

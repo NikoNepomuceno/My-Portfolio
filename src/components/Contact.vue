@@ -19,8 +19,8 @@
               </div>
               <div class="contact__details">
                 <h4>Contact Number</h4>
-                <a href="tel:+1234567890">(+63) 916 591 6722</a>
-              </div>
+                <a href="tel:+639165916722">(+63) 916 591 6722</a>
+              </div>    
             </div>
             
             <div class="contact__method">
@@ -133,7 +133,7 @@ const handleSubmit = async () => {
 <style scoped>
 .contact {
   min-height: 80vh;
-  padding: 3rem 1rem;
+  padding: var(--spacing-2xl) var(--spacing-md);
   color: #fff;
 }
 
@@ -143,9 +143,9 @@ const handleSubmit = async () => {
 }
 
 .contact__title {
-  font-size: 3rem;
+  font-size: var(--font-size-4xl);
   font-weight: 800;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-xl);
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
@@ -154,7 +154,7 @@ const handleSubmit = async () => {
 .contact__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: var(--spacing-2xl);
   align-items: start;
 }
 
@@ -163,33 +163,38 @@ const handleSubmit = async () => {
 }
 
 .contact__subtitle {
-  font-size: 1.8rem;
+  font-size: var(--font-size-2xl);
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-md);
   color: #e0e0e0;
 }
 
 .contact__description {
   color: #b0b8c9;
   line-height: 1.7;
-  margin-bottom: 6rem;
-  font-size: 1.1rem;
+  margin-bottom: var(--spacing-2xl);
+  font-size: var(--font-size-base);
 }
 
 .contact__methods {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--spacing-md);
 }
 
 .contact__method {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
   background: rgba(10, 14, 23, 0.5);
   border: 1px solid #222b3a;
   border-radius: 0.5rem;
+  transition: border-color 0.2s;
+}
+
+.contact__method:hover {
+  border-color: #00bcd4;
 }
 
 .contact__icon {
@@ -198,17 +203,18 @@ const handleSubmit = async () => {
 }
 
 .contact__details h4 {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--spacing-xs);
   color: #e0e0e0;
 }
 
 .contact__details a {
   color: #b0b8c9;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   transition: color 0.2s;
+  word-break: break-all;
 }
 
 .contact__details a:hover {
@@ -218,30 +224,31 @@ const handleSubmit = async () => {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--spacing-md);
 }
 
 .form__group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
 }
 
 .form__label {
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   color: #e0e0e0;
 }
 
 .form__input,
 .form__textarea {
-  padding: 0.8rem 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   background: rgba(10, 14, 23, 0.5);
   border: 1px solid #222b3a;
   border-radius: 0.3rem;
   color: #fff;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   transition: border-color 0.2s;
+  min-height: 44px;
 }
 
 .form__input:focus,
@@ -256,16 +263,17 @@ const handleSubmit = async () => {
 }
 
 .form__submit {
-  padding: 1rem 2rem;
+  padding: var(--spacing-sm) var(--spacing-lg);
   background: #111216;
   color: #fff;
   border: 1.5px solid #222b3a;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  margin-top: 1rem;
+  margin-top: var(--spacing-sm);
+  min-height: 44px;
 }
 
 .form__submit:hover:not(:disabled) {
@@ -279,19 +287,98 @@ const handleSubmit = async () => {
   cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
-  .contact__title {
-    font-size: 2.5rem;
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .contact {
+    padding: var(--spacing-xl) var(--spacing-sm);
   }
-
+  
+  .contact__title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+  }
+  
   .contact__content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: var(--spacing-xl);
   }
-
+  
+  .contact__info {
+    margin-top: 0;
+  }
+  
+  .contact__subtitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .contact__description {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+  
   .contact__method {
     flex-direction: column;
     text-align: center;
+    padding: var(--spacing-md);
+  }
+  
+  .contact__details a {
+    font-size: var(--font-size-xs);
+  }
+  
+  .form__input,
+  .form__textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .form__submit {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .contact__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .contact__content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .contact__method {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contact__title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .contact__content {
+    gap: var(--spacing-xl);
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .contact {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .contact__title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .contact__description {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .contact__methods {
+    gap: var(--spacing-sm);
   }
 }
 </style>
