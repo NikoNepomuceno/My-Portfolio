@@ -183,7 +183,7 @@ const scrollToSection = (sectionId) => {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background: #0A0E17;
     display: none; /* Initially hidden, managed by GSAP */
