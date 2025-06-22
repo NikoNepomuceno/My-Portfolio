@@ -85,8 +85,6 @@ const selectedItem = ref(null)
 const filters = [
   { id: 'all', name: 'All' },
   { id: 'web', name: 'Web Apps' },
-  { id: 'mobile', name: 'Mobile Apps' },
-  { id: 'api', name: 'APIs' },
   { id: 'database', name: 'Databases' }
 ]
 
@@ -101,22 +99,6 @@ const galleryItems = ref([
   },
   {
     id: 2,
-    title: "Mobile Banking App",
-    description: "Secure mobile application for banking operations",
-    category: "mobile",
-    date: "2023",
-    technologies: ["React Native", "Node.js", "PostgreSQL"]
-  },
-  {
-    id: 3,
-    title: "RESTful API Gateway",
-    description: "Microservices API gateway with authentication and rate limiting",
-    category: "api",
-    date: "2024",
-    technologies: ["Express.js", "Redis", "JWT"]
-  },
-  {
-    id: 4,
     title: "Database Architecture",
     description: "Scalable database design for high-traffic applications",
     category: "database",
@@ -124,7 +106,7 @@ const galleryItems = ref([
     technologies: ["PostgreSQL", "Redis", "MongoDB"]
   },
   {
-    id: 5,
+    id: 3,
     title: "Task Management System",
     description: "Collaborative project management platform",
     category: "web",
@@ -132,28 +114,12 @@ const galleryItems = ref([
     technologies: ["Vue.js", "Django", "PostgreSQL"]
   },
   {
-    id: 6,
-    title: "Real-time Chat API",
-    description: "WebSocket-based messaging system with encryption",
-    category: "api",
-    date: "2023",
-    technologies: ["Socket.io", "Node.js", "MongoDB"]
-  },
-  {
-    id: 7,
+    id: 4,
     title: "Inventory Management",
     description: "Comprehensive inventory tracking and reporting system",
     category: "web",
     date: "2024",
     technologies: ["React", "Spring Boot", "MySQL"]
-  },
-  {
-    id: 8,
-    title: "Fitness Tracking App",
-    description: "Mobile app for tracking workouts and health metrics",
-    category: "mobile",
-    date: "2023",
-    technologies: ["Flutter", "Firebase", "SQLite"]
   }
 ])
 

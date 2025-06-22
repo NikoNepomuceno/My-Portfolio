@@ -5,7 +5,13 @@
       <div class="projects__grid scale-animate">
         <div class="project-card" v-for="project in projects" :key="project.id">
           <div class="project-card__image">
-            <div class="project-card__placeholder">
+            <img 
+              v-if="project.image" 
+              :src="project.image" 
+              :alt="project.title"
+              class="project-card__img"
+            />
+            <div v-else class="project-card__placeholder">
               <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                 <line x1="8" y1="21" x2="16" y2="21"/>
@@ -52,7 +58,8 @@ const projects = ref([
     description: "An Online web application to check student attendace and clarance for more seemless and paperless transaction.",
     technologies: ["Vue.js", "PHP", "JWT", "MySQL", "AJAX"],
     github: "https://github.com/yourusername/ecommerce-api",
-    // live: "https://api-demo.example.com"
+    image: "/images/check-ease.png",
+    live: null
   },
   {
     id: 2,
@@ -60,6 +67,7 @@ const projects = ref([
     description: "A centralized web application for reporting Lost & Found pets.",
     technologies: ["Laravel", "MySQL", "Cloudinary", "LiveWire", "AJAX"],
     github: "https://github.com/yourusername/task-manager",
+    image: "/images/pawnder.png",
     live: null
   },
   {
@@ -68,6 +76,7 @@ const projects = ref([
     description: "A simple 2D directory of Gordon College.",
     technologies: ["HTML", "CSS", "JavaScript", "Figma", "Canva"],
     github: "https://github.com/yourusername/microservices-platform",
+    image: "/images/gordon-directory.png",
     live: null
   },
         // {
@@ -114,6 +123,8 @@ const projects = ref([
   border-radius: 0.5rem;
   overflow: hidden;
   transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
@@ -128,7 +139,19 @@ const projects = ref([
   align-items: center;
   justify-content: center;
   color: #00bcd4;
+  overflow: hidden;
 }
+
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* .project-card:hover .project-card__img {
+  transform: scale(1.05);
+} */
 
 .project-card__placeholder {
   opacity: 0.7;
@@ -136,6 +159,9 @@ const projects = ref([
 
 .project-card__content {
   padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .project-card__title {
@@ -162,8 +188,8 @@ const projects = ref([
 .tech-tag {
   background: rgba(0, 188, 212, 0.1);
   color: #00bcd4;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
   font-size: var(--font-size-xs);
   border: 1px solid rgba(0, 188, 212, 0.3);
 }
@@ -172,6 +198,7 @@ const projects = ref([
   display: flex;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
+  margin-top: auto;
 }
 
 .project-link {
