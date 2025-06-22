@@ -48,7 +48,7 @@ import { ref } from 'vue'
 const projects = ref([
   {
     id: 1,
-    title: "CommEase",
+    title: "Check-Ease",
     description: "An Online web application to check student attendace and clarance for more seemless and paperless transaction.",
     technologies: ["Vue.js", "PHP", "JWT", "MySQL", "AJAX"],
     github: "https://github.com/yourusername/ecommerce-api",
@@ -64,9 +64,9 @@ const projects = ref([
   },
   {
     id: 3,
-    title: "Microservices Architecture",
-    description: "A scalable microservices platform with service discovery, load balancing, and centralized logging using Docker and Kubernetes.",
-    technologies: ["Java", "Spring Boot", "Docker", "Kubernetes", "RabbitMQ"],
+    title: "Gordon College Directory",
+    description: "A simple 2D directory of Gordon College.",
+    technologies: ["HTML", "CSS", "JavaScript", "Figma", "Canva"],
     github: "https://github.com/yourusername/microservices-platform",
     live: null
   },

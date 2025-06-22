@@ -242,7 +242,7 @@ const scrollToSection = (sectionId) => {
   }
   
   .navbar__logo {
-    font-size: var(--font-size-base);
+    display: none;
   }
   
   .navbar__links .nav-link {
