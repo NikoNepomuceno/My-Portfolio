@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 html, body {
@@ -25,6 +26,29 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
   line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Ensure viewport width calculations don't include scrollbar */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Prevent any element from causing horizontal overflow */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure containers don't overflow */
+  .container {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 /* Responsive Typography */
