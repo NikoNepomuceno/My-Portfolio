@@ -58,7 +58,7 @@ const projects = ref([
     description: "An Online web application to check student attendace and clarance for more seemless and paperless transaction.",
     technologies: ["Vue.js", "PHP", "JWT", "MySQL", "AJAX"],
     github: "https://github.com/yourusername/ecommerce-api",
-    image: "/images/check-ease.png",
+    image: "/images/CheckEase.png",
     live: null
   },
   {
@@ -76,7 +76,7 @@ const projects = ref([
     description: "A simple 2D directory of Gordon College.",
     technologies: ["HTML", "CSS", "JavaScript", "Figma", "Canva"],
     github: "https://github.com/yourusername/microservices-platform",
-    image: "/images/gordon-directory.png",
+    image: "/images/GC_LOGO.png",
     live: null
   },
         // {
