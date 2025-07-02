@@ -57,7 +57,7 @@ const projects = ref([
     title: "Check-Ease",
     description: "An Online web application to check student attendace and clarance for more seemless and paperless transaction.",
     technologies: ["Vue.js", "PHP", "JWT", "MySQL", "AJAX"],
-    github: "https://github.com/yourusername/ecommerce-api",
+    github: "https://github.com/NikoNepomuceno/ecommerce-api",
     image: "/images/CheckEase.png",
     live: null
   },
@@ -66,7 +66,7 @@ const projects = ref([
     title: "Pawnder",
     description: "A centralized web application for reporting Lost & Found pets.",
     technologies: ["Laravel", "MySQL", "Cloudinary", "LiveWire", "AJAX"],
-    github: "https://github.com/yourusername/task-manager",
+    github: "https://github.com/NikoNepomuceno/Pawnder.git",
     image: "/images/pawnder.png",
     live: null
   },
@@ -75,7 +75,7 @@ const projects = ref([
     title: "Gordon College Directory",
     description: "A simple 2D directory of Gordon College.",
     technologies: ["HTML", "CSS", "JavaScript", "Figma", "Canva"],
-    github: "https://github.com/yourusername/microservices-platform",
+    github: "https://github.com/NikoNepomuceno/microservices-platform",
     image: "/images/GC_LOGO.png",
     live: null
   },
