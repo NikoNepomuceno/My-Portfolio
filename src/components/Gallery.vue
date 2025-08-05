@@ -17,13 +17,19 @@
 
       <div class="gallery__grid">
         <div 
-          v-for="item in filteredItems" 
+          v-for="item in paginatedItems" 
           :key="item.id"
           class="gallery__item"
           @click="openModal(item)"
         >
           <div class="gallery__image">
-            <div class="gallery__placeholder">
+            <img 
+              :src="item.image" 
+              :alt="item.title"
+              class="gallery__img"
+              @error="handleImageError"
+            />
+            <div class="gallery__placeholder" style="display: none;">
               <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                 <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -39,6 +45,33 @@
             </div>
           </div>
         </div>
+        
+        <!-- View More / Show Less Button -->
+        <div class="gallery__load-more" v-if="hasMoreItems || isShowingAllItems">
+          <button 
+            v-if="hasMoreItems && !isShowingAllItems"
+            class="load-more-btn"
+            @click="loadMoreItems"
+          >
+            <span>View More</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="8" x2="13" y2="8"/>
+              <polyline points="10,5 13,8 10,11"/>
+            </svg>
+          </button>
+          
+          <button 
+            v-if="isShowingAllItems"
+            class="load-more-btn load-more-btn--less"
+            @click="showLessItems"
+          >
+            <span>Show Less</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="9" y1="8" x2="3" y2="8"/>
+              <polyline points="6,5 3,8 6,11"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -52,7 +85,13 @@
           </svg>
         </button>
         <div class="modal__image">
-          <div class="modal__placeholder">
+          <img 
+            :src="selectedItem.image" 
+            :alt="selectedItem.title"
+            class="modal__img"
+            @error="handleModalImageError"
+          />
+          <div class="modal__placeholder" style="display: none;">
             <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -65,7 +104,7 @@
           <p>{{ selectedItem.description }}</p>
           <div class="modal__details">
             <span class="modal__category">{{ selectedItem.category }}</span>
-            <span class="modal__date">{{ selectedItem.date }}</span>
+            <!-- <span class="modal__date">{{ selectedItem.date }}</span> -->
           </div>
           <div class="modal__tech" v-if="selectedItem.technologies">
             <span class="tech-tag" v-for="tech in selectedItem.technologies" :key="tech">{{ tech }}</span>
@@ -77,50 +116,111 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const activeFilter = ref('all')
 const selectedItem = ref(null)
+const itemsPerPage = ref(9) // 3x3 grid
+const currentPage = ref(1)
 
 const filters = [
   { id: 'all', name: 'All' },
-  { id: 'web', name: 'Web Apps' },
-  { id: 'database', name: 'Databases' }
+  { id: 'OJT', name: 'OJT Photos' },
+  { id: 'OJT Videos', name: 'OJT Videos' },
+  { id: 'OJT Vlog', name: 'OJT Vlog' }
 ]
 
 const galleryItems = ref([
   {
     id: 1,
-    title: "E-Commerce Dashboard",
-    description: "Admin dashboard for managing products, orders, and analytics",
-    category: "web",
-    date: "2024",
-    technologies: ["Vue.js", "Node.js", "MongoDB"]
-  },
+    description:"Troubleshooting PC boot-drive",
+    category: "OJT",
+    image: "/images/gallery/IMG_5827.JPG",
+},
   {
     id: 2,
-    title: "Database Architecture",
-    description: "Scalable database design for high-traffic applications",
-    category: "database",
-    date: "2023",
-    technologies: ["PostgreSQL", "Redis", "MongoDB"]
+    description:"Troubleshooting PC boot-drive",
+    category: "OJT",
+    image: "/images/gallery/IMG_5833.jpg",
   },
   {
-    id: 3,
-    title: "Task Management System",
-    description: "Collaborative project management platform",
-    category: "web",
-    date: "2024",
-    technologies: ["Vue.js", "Django", "PostgreSQL"]
+    id: 3 ,
+    description:"Troubleshooting PC boot-drive",
+    category: "OJT",
+    image: "/images/gallery/IMG_5830.jpg",
   },
   {
-    id: 4,
-    title: "Inventory Management",
-    description: "Comprehensive inventory tracking and reporting system",
-    category: "web",
-    date: "2024",
-    technologies: ["React", "Spring Boot", "MySQL"]
-  }
+    id: 4 ,
+    description:"Troubleshooting printer not turning on",
+    category: "OJT",
+    image: "/images/gallery/IMG_5304.JPG",
+  },
+  {
+    id: 5 ,
+    description:"Organizing voter files in the blue book",
+    category: "OJT",
+    image: "/images/gallery/IMG_5136.jpg",
+  },
+  {
+    id: 6 ,
+    description:"Organizing voter files in the blue book",
+    category: "OJT",
+    image: "/images/gallery/IMG_5137.jpg",
+  },
+  {
+    id: 7 ,
+    description:"Organizing voter files in the blue book",
+    category: "OJT",
+    image: "/images/gallery/IMG_5138.jpg",
+  },
+  {
+    id: 8 ,
+    description:"Organizing voter files in the blue book",
+    category: "OJT",
+    image: "/images/gallery/IMG_5140.jpg",
+  },
+  {
+    id: 9 ,
+    description:"Sworn Declarations from the BIR Form 2316 related to teachers' compensation",
+    category: "OJT",
+    image: "/images/gallery/IMG_5158.jpg",
+  },
+  {
+    id: 10,
+    description:"Sworn Declarations from the BIR Form 2316 related to teachers' compensation",
+    category: "OJT",
+    image: "/images/gallery/IMG_5160.jpg",
+  },
+  {
+    id: 11,
+    description:"Maintaining office equipment",
+    category: "OJT",
+    image: "/images/gallery/IMG_5142.jpg",
+  },
+  {
+    id: 12,
+    description:"Data backup and recovery",
+    category: "OJT",
+    image: "/images/gallery/IMG_5143.jpg",
+  },
+  {
+    id: 13,
+    description:"Software installation and updates",
+    category: "OJT",
+    image: "/images/gallery/IMG_5144.jpg",
+  },
+  {
+    id: 14,
+    description:"Hardware troubleshooting",
+    category: "OJT",
+    image: "/images/gallery/IMG_5145.jpg",
+  },
+  {
+    id: 15,
+    description:"System maintenance tasks",
+    category: "OJT",
+    image: "/images/gallery/IMG_5146.jpg",
+  },
 ])
 
 const filteredItems = computed(() => {
@@ -128,6 +228,24 @@ const filteredItems = computed(() => {
     return galleryItems.value
   }
   return galleryItems.value.filter(item => item.category === activeFilter.value)
+})
+
+const paginatedItems = computed(() => {
+  const startIndex = (currentPage.value - 1) * itemsPerPage.value
+  const endIndex = startIndex + itemsPerPage.value
+  return filteredItems.value.slice(startIndex, endIndex)
+})
+
+const hasMoreItems = computed(() => {
+  return paginatedItems.value.length < filteredItems.value.length
+})
+
+const isShowingAllItems = computed(() => {
+  return currentPage.value > 1
+})
+
+const totalPages = computed(() => {
+  return Math.ceil(filteredItems.value.length / itemsPerPage.value)
 })
 
 const openModal = (item) => {
@@ -139,6 +257,43 @@ const closeModal = () => {
   selectedItem.value = null
   document.body.style.overflow = 'auto'
 }
+
+const handleImageError = (event) => {
+  // Fallback to placeholder if image fails to load
+  event.target.style.display = 'none'
+  const placeholder = event.target.parentElement.querySelector('.gallery__placeholder')
+  if (placeholder) {
+    placeholder.style.display = 'flex'
+  }
+}
+
+const handleModalImageError = (event) => {
+  // Fallback to placeholder if modal image fails to load
+  event.target.style.display = 'none'
+  const placeholder = event.target.parentElement.querySelector('.modal__placeholder')
+  if (placeholder) {
+    placeholder.style.display = 'flex'
+  }
+}
+
+const loadMoreItems = () => {
+  if (hasMoreItems.value) {
+    currentPage.value++
+  }
+}
+
+const showLessItems = () => {
+  currentPage.value = 1
+}
+
+const resetPagination = () => {
+  currentPage.value = 1
+}
+
+// Reset pagination when filter changes
+watch(activeFilter, () => {
+  resetPagination()
+})
 </script>
 
 <style scoped>
@@ -221,6 +376,18 @@ const closeModal = () => {
   align-items: center;
   justify-content: center;
   color: #00bcd4;
+  overflow: hidden;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery__item:hover .gallery__img {
+  transform: scale(1.05);
 }
 
 .gallery__placeholder {
@@ -270,6 +437,67 @@ const closeModal = () => {
   border-radius: 1rem;
   font-size: var(--font-size-xs);
   border: 1px solid rgba(0, 188, 212, 0.3);
+}
+
+/* View More Button Styles */
+.gallery__load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-xl);
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.load-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+  min-height: 48px;
+  min-width: 140px;
+}
+
+.load-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+  background: linear-gradient(135deg, #00acc1 0%, #008ba3 100%);
+}
+
+.load-more-btn:active {
+  transform: translateY(0);
+}
+
+.load-more-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.load-more-btn:hover svg {
+  transform: translateX(2px);
+}
+
+.load-more-btn--less {
+  background: linear-gradient(135deg, #666 0%, #444 100%);
+  box-shadow: 0 4px 15px rgba(102, 102, 102, 0.3);
+}
+
+.load-more-btn--less:hover {
+  background: linear-gradient(135deg, #555 0%, #333 100%);
+  box-shadow: 0 6px 20px rgba(102, 102, 102, 0.4);
+}
+
+.load-more-btn--less:hover svg {
+  transform: translateX(-2px);
 }
 
 /* Modal Styles */
@@ -323,12 +551,19 @@ const closeModal = () => {
 }
 
 .modal__image {
-  height: 300px;
+  height: 450px;
   background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #00bcd4;
+  overflow: hidden;
+}
+
+.modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .modal__placeholder {
@@ -487,6 +722,18 @@ const closeModal = () => {
   
   .gallery__image {
     height: 150px;
+  }
+  
+  .load-more-btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    min-height: 44px;
+  }
+  
+  .load-more-btn--less {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    min-height: 44px;
   }
 }
 </style> 

@@ -7,6 +7,7 @@ import Projects from './components/Projects.vue';
 import Gallery from './components/Gallery.vue';
 import Contact from './components/Contact.vue';
 import BackToTop from './components/BackToTop.vue';
+import Hello from './components/Hello.vue';
 import { createScrollAnimations, cleanupAnimations } from './utils/animations';
 import { RouterLink } from 'vue-router';
 
@@ -113,6 +114,7 @@ onUnmounted(() => {
     <Gallery />
     <Contact />
     <BackToTop />
+    <!-- <Hello /> -->
 
     <!-- <RouterView /> -->
   </main>
