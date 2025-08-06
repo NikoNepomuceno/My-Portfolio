@@ -62,7 +62,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 188, 212, 0.3);
@@ -94,8 +94,8 @@ onUnmounted(() => {
 /* Mobile Optimizations */
 @media (max-width: 480px) {
   .back-to-top {
-    bottom: 20px;
-    right: 20px;
+    bottom: 15px;
+    right: 15px;
     width: 45px;
     height: 45px;
     min-width: 45px;
@@ -117,8 +117,8 @@ onUnmounted(() => {
 /* Landscape orientation on mobile */
 @media (max-width: 768px) and (orientation: landscape) {
   .back-to-top {
-    bottom: 15px;
-    right: 15px;
+    bottom: 10px;
+    right: 10px;
     width: 40px;
     height: 40px;
     min-width: 40px;

@@ -23,12 +23,27 @@
           @click="openModal(item)"
         >
           <div class="gallery__image">
+            <!-- Video Element -->
+            <video 
+              v-if="item.video"
+              :src="item.video"
+              class="gallery__video"
+              preload="metadata"
+              @error="handleVideoError"
+              muted
+            >
+              Your browser does not support the video tag.
+            </video>
+            
+            <!-- Image Element -->
             <img 
+              v-else
               :src="item.image" 
               :alt="item.title"
               class="gallery__img"
               @error="handleImageError"
             />
+            
             <div class="gallery__placeholder" style="display: none;">
               <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -36,11 +51,19 @@
                 <polyline points="21,15 16,10 5,21"/>
               </svg>
             </div>
+            
+            <!-- Video Play Icon Overlay -->
+            <div v-if="item.video" class="gallery__video-overlay">
+              <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5,3 19,12 5,21 5,3"/>
+              </svg>
+            </div>
+            
             <div class="gallery__overlay">
               <div class="gallery__overlay-content">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.description }}</p>
-                <span class="gallery__category">{{ item.category }}</span>
+                <!-- <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p> -->
+                <!-- <span class="gallery__category">{{ item.category }}</span> -->
               </div>
             </div>
           </div>
@@ -85,12 +108,27 @@
           </svg>
         </button>
         <div class="modal__image">
+          <!-- Video Element in Modal -->
+          <video 
+            v-if="selectedItem.video"
+            :src="selectedItem.video"
+            class="modal__video"
+            controls
+            preload="metadata"
+            @error="handleModalVideoError"
+          >
+            Your browser does not support the video tag.
+          </video>
+          
+          <!-- Image Element in Modal -->
           <img 
+            v-else
             :src="selectedItem.image" 
             :alt="selectedItem.title"
             class="modal__img"
             @error="handleModalImageError"
           />
+          
           <div class="modal__placeholder" style="display: none;">
             <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -221,6 +259,31 @@ const galleryItems = ref([
     category: "OJT",
     image: "/images/gallery/IMG_5146.jpg",
   },
+  {
+    id: 16,
+    category: "OJT Videos",
+    video: "/videos/IMG_5828.mp4",
+  },
+  {
+    id: 17,
+    category: "OJT Videos",
+    video: "/videos/IMG_5162.mp4",
+  },
+  {
+    id: 18,
+    category: "OJT Videos",
+    video: "/videos/IMG_5168.mp4",
+  },
+  {
+    id: 19,
+    category: "OJT Videos",
+    video: "/videos/IMG_5193.mp4",
+  },
+  {
+    id: 20,
+    category: "OJT Videos",
+    video: "/videos/IMG_5301.mp4",
+  },
 ])
 
 const filteredItems = computed(() => {
@@ -269,6 +332,24 @@ const handleImageError = (event) => {
 
 const handleModalImageError = (event) => {
   // Fallback to placeholder if modal image fails to load
+  event.target.style.display = 'none'
+  const placeholder = event.target.parentElement.querySelector('.modal__placeholder')
+  if (placeholder) {
+    placeholder.style.display = 'flex'
+  }
+}
+
+const handleVideoError = (event) => {
+  // Fallback to placeholder if video fails to load
+  event.target.style.display = 'none'
+  const placeholder = event.target.parentElement.querySelector('.gallery__placeholder')
+  if (placeholder) {
+    placeholder.style.display = 'flex'
+  }
+}
+
+const handleModalVideoError = (event) => {
+  // Fallback to placeholder if modal video fails to load
   event.target.style.display = 'none'
   const placeholder = event.target.parentElement.querySelector('.modal__placeholder')
   if (placeholder) {
@@ -388,6 +469,61 @@ watch(activeFilter, () => {
 
 .gallery__item:hover .gallery__img {
   transform: scale(1.05);
+}
+
+.gallery__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery__item:hover .gallery__video {
+  transform: scale(1.05);
+}
+
+.gallery__video-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery__item:hover .gallery__video-overlay {
+  background: rgba(0, 188, 212, 0.2);
+  border-color: #00bcd4;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.gallery__video-overlay svg {
+  width: 32px;
+  height: 32px;
+  fill: #00bcd4;
+  stroke: #00bcd4;
+  stroke-width: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+  position: relative;
+  left: 2px;
+}
+
+.gallery__item:hover .gallery__video-overlay svg {
+  fill: #fff;
+  stroke: #fff;
+  transform: scale(1.1);
 }
 
 .gallery__placeholder {
@@ -560,6 +696,12 @@ watch(activeFilter, () => {
   overflow: hidden;
 }
 
+.modal__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .modal__img {
   width: 100%;
   height: 100%;
@@ -652,12 +794,26 @@ watch(activeFilter, () => {
     height: 180px;
   }
   
+  /* Modal Mobile Optimizations */
   .modal {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
   }
   
   .modal__content {
-    max-height: 95vh;
+    max-height: 98vh;
+    max-width: 95vw;
+    margin: var(--spacing-xs);
+  }
+  
+  .modal__close {
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    min-height: 40px;
+    min-width: 40px;
+  }
+  
+  .modal__image {
+    height: 180px;
   }
   
   .modal__info {
@@ -665,11 +821,21 @@ watch(activeFilter, () => {
   }
   
   .modal__info h2 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
   
-  .modal__image {
-    height: 200px;
+  .modal__info p {
+    font-size: var(--font-size-sm);
+  }
+  
+  .modal__details {
+    gap: var(--spacing-xs);
+  }
+  
+  .modal__category,
+  .modal__date {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 }
 
@@ -682,8 +848,26 @@ watch(activeFilter, () => {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
   
+  /* Modal Tablet Optimizations */
   .modal {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+  
+  .modal__content {
+    max-width: 90vw;
+    max-height: 92vh;
+  }
+  
+  .modal__image {
+    height: 300px;
+  }
+  
+  .modal__info h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .modal__info p {
+    font-size: var(--font-size-base);
   }
 }
 
@@ -734,6 +918,38 @@ watch(activeFilter, () => {
     padding: var(--spacing-xs) var(--spacing-md);
     font-size: var(--font-size-sm);
     min-height: 44px;
+  }
+  
+  /* Modal Landscape Optimizations */
+  .modal {
+    padding: var(--spacing-xs);
+  }
+  
+  .modal__content {
+    max-height: 96vh;
+    max-width: 98vw;
+  }
+  
+  .modal__image {
+    height: 120px;
+  }
+  
+  .modal__info {
+    padding: var(--spacing-sm);
+  }
+  
+  .modal__info h2 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .modal__info p {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .modal__details {
+    margin-bottom: var(--spacing-sm);
   }
 }
 </style> 
