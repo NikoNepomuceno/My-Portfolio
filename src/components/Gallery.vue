@@ -114,6 +114,8 @@
             :src="selectedItem.video"
             class="modal__video"
             controls
+            autoplay
+            muted
             preload="metadata"
             @error="handleModalVideoError"
           >
@@ -164,8 +166,7 @@ const currentPage = ref(1)
 const filters = [
   { id: 'all', name: 'All' },
   { id: 'OJT', name: 'OJT Photos' },
-  { id: 'OJT Videos', name: 'OJT Videos' },
-  { id: 'OJT Vlog', name: 'OJT Vlog' }
+  { id: 'OJT Videos', name: 'OJT Videos' }
 ]
 
 const galleryItems = ref([
@@ -229,58 +230,58 @@ const galleryItems = ref([
     category: "OJT",
     image: "/images/gallery/IMG_5160.jpg",
   },
+  // {
+  //   id: 11,
+  //   description:"Maintaining office equipment",
+  //   category: "OJT",
+  //   image: "/images/gallery/IMG_5142.jpg",
+  // },
+  // {
+  //   id: 12,
+  //   description:"Data backup and recovery",
+  //   category: "OJT",
+  //   image: "/images/gallery/IMG_5143.jpg",
+  // },
+  // {
+  //   id: 13,
+  //   description:"Software installation and updates",
+  //   category: "OJT",
+  //   image: "/images/gallery/IMG_5144.jpg",
+  // },
+  // {
+  //   id: 14,
+  //   description:"Hardware troubleshooting",
+  //   category: "OJT",
+  //   image: "/images/gallery/IMG_5145.jpg",
+  // },
+  // {
+  //   id: 15,
+  //   description:"System maintenance tasks",
+  //   category: "OJT",
+  //   image: "/images/gallery/IMG_5146.jpg",
+  // },
   {
     id: 11,
-    description:"Maintaining office equipment",
-    category: "OJT",
-    image: "/images/gallery/IMG_5142.jpg",
-  },
-  {
-    id: 12,
-    description:"Data backup and recovery",
-    category: "OJT",
-    image: "/images/gallery/IMG_5143.jpg",
-  },
-  {
-    id: 13,
-    description:"Software installation and updates",
-    category: "OJT",
-    image: "/images/gallery/IMG_5144.jpg",
-  },
-  {
-    id: 14,
-    description:"Hardware troubleshooting",
-    category: "OJT",
-    image: "/images/gallery/IMG_5145.jpg",
-  },
-  {
-    id: 15,
-    description:"System maintenance tasks",
-    category: "OJT",
-    image: "/images/gallery/IMG_5146.jpg",
-  },
-  {
-    id: 16,
     category: "OJT Videos",
     video: "/videos/IMG_5828.mp4",
   },
   {
-    id: 17,
+    id: 12,
     category: "OJT Videos",
     video: "/videos/IMG_5162.mp4",
   },
   {
-    id: 18,
+    id: 13,
     category: "OJT Videos",
     video: "/videos/IMG_5168.mp4",
   },
   {
-    id: 19,
+    id: 14,
     category: "OJT Videos",
     video: "/videos/IMG_5193.mp4",
   },
   {
-    id: 20,
+    id: 15,
     category: "OJT Videos",
     video: "/videos/IMG_5301.mp4",
   },

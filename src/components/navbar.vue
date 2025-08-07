@@ -70,6 +70,7 @@ const scrollToSection = (sectionId) => {
       <li><a @click="scrollToSection('about')" class="nav-link">About</a></li>
       <li><a @click="scrollToSection('projects')" class="nav-link">Projects</a></li>
       <li><a @click="scrollToSection('gallery')" class="nav-link">Gallery</a></li>
+      <li><a @click="scrollToSection('vlog')" class="nav-link">Vlog</a></li>
       <li><a @click="scrollToSection('contact')" class="nav-link">Contact</a></li>
     </ul>
   </nav>

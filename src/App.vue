@@ -5,6 +5,7 @@ import Home from './components/Home.vue';
 import About from './components/About.vue';
 import Projects from './components/Projects.vue';
 import Gallery from './components/Gallery.vue';
+import Vlog from './components/Vlog.vue';
 import Contact from './components/Contact.vue';
 import BackToTop from './components/BackToTop.vue';
 import Hello from './components/Hello.vue';
@@ -112,6 +113,7 @@ onUnmounted(() => {
     <About />
     <Projects />
     <Gallery />
+    <Vlog />
     <Contact />
     <BackToTop />
     <!-- <Hello /> -->

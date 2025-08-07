@@ -19,9 +19,7 @@
               </div>
               <div class="contact__details">
                 <h4>Contact Number</h4>
-                <a href="tel:+639165916722">(+63) 916 591 6722</a> <br>
-                <a href="tel:+639165916722">(+63) 916 591 6722</a> <br>
-                <a href="tel:+639165916722">(+63) 916 591 6722</a> 
+                <a href="tel:+639165916722">(+63) 916 591 6722</a>
               </div>    
             </div>
             
